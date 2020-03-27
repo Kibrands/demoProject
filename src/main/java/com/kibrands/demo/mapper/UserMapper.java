@@ -8,7 +8,8 @@ import java.util.List;
 @Mapper
 public interface UserMapper {
 
-    @Insert("INSERT INTO users VALUES (#{user.userName}, #{user.email}, #{user.password}, #{user.birth})")
+    @Insert("INSERT INTO users (userName, email, password, birth) VALUES " +
+            "(#{user.userName}, #{user.email}, #{user.password}, #{user.birth})")
     void insertUser(@Param("user") User user);
 
     @Select("SELECT * FROM users WHERE userId = #{userId}")

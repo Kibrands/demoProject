@@ -6,6 +6,7 @@ import com.kibrands.demo.service.UserService;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 
 @Service
@@ -25,10 +26,13 @@ public class UserServiceImpl implements UserService {
     }
 
     public void insertUser(User user) {
+        user.setPassword(Base64.getEncoder().encodeToString(user.getPassword().getBytes()));
         this.userMapper.insertUser(user);
     }
 
     public boolean updateUser(User user) {
+        if (!user.getPassword().equals(this.userMapper.getUser(user.getUserId()).getPassword()))
+            user.setPassword(Base64.getEncoder().encodeToString(user.getPassword().getBytes()));
         return this.userMapper.updateUser(user);
     }
 

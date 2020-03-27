@@ -4,10 +4,14 @@ import com.kibrands.demo.mapper.UserMapper;
 import com.kibrands.demo.model.User;
 import com.kibrands.demo.service.UserService;
 import com.kibrands.demo.service.impl.UserServiceImpl;
+import liquibase.integration.spring.SpringLiquibase;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.liquibase.DataSourceClosingSpringLiquibase;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ImportResource;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import javax.swing.*;
@@ -16,6 +20,7 @@ import java.util.Base64;
 import java.util.List;
 
 @SpringBootApplication
+@ImportResource("classpath:beans.xml")
 public class DemoApplication implements CommandLineRunner {
 
     private final UserMapper userMapper;
@@ -30,6 +35,7 @@ public class DemoApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+        /* TEST
         this.userMapper.insertUser(User.builder()
                 .userName("julio")
                 .email("juliomattacadenas@gmail.com")
@@ -42,5 +48,7 @@ public class DemoApplication implements CommandLineRunner {
 		System.out.print("Modificando usuario " + user.getUserId() + "...");
 		user.setEmail("kibrandsofficial@gmail.com");
 		System.out.println("\t" + (this.userMapper.updateUser(user) ? "OK" : "X"));
+         */
+        System.out.println(this.userMapper.getAllUsers());
     }
 }
