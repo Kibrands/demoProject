@@ -21,7 +21,7 @@
         <jstl.version>1.2</jstl.version>
         <servlet-api.version>4.0.1</servlet-api.version>
         <jsp-api.version>2.3.3</jsp-api.version>
-        <liquibase.version>3.8.8</liquibase.version>
+        <liquibase.version>4.8.0</liquibase.version>
     </properties>
 
     <dependencies>
